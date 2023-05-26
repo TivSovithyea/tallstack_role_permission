@@ -44,13 +44,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
-});
-
-Route::middleware('auth')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('home');
     Route::resource('/users', UsersController::class);
-
 
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')
@@ -58,4 +54,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+
+    Route::get('role', \App\Http\Livewire\Role::class)->name('role');
 });
